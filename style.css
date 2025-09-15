@@ -1,0 +1,312 @@
+:root{
+   --bg: linear-gradient(16deg, rgba(0, 0, 50, 1) 0%, rgba(0, 0, 150, 1) 50%, rgba(0, 200, 255, 1) 100%);
+   
+
+   --accent: #ffffff;
+   --muted: #caced1;
+
+  }
+ 
+    body{
+    min-height: 100vh;
+    text-align: center;
+    color: #222;
+    font-family:Arial,  sans-serif;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    
+   
+    
+  }
+  h1{
+    margin-top: 5px;
+    margin-left: 10px;
+    color:#333;
+  }
+  .title{
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo{
+    width:60px;
+    height: 68px;
+    vertical-align:middle;
+    filter: drop-shadow(0 0 6px #ffffff)
+            drop-shadow(0 0 12px #a64ca6);
+ 
+  }
+  .subtitle{
+    font-size: 18px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  button{
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background: #007bff;
+    color: white;
+    transition: 0.3s;
+  }
+  button:hover{
+    background: #0056b3;
+  }
+
+  .avatar-grid{
+    display:flex;
+    gap: 10px;
+    flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+    margin-top: 8px;
+  }
+  .avatar{
+    width: 74px;
+    height: 74px;
+    border-radius: 12px ;
+    background: #fbf5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    overflow: hidden;
+   
+   cursor: pointer;
+   border: 3px solid transparent;
+   /* transition: tranform .14s ease , box-shadow .14s; */
+
+     transition: all 0.25s ease; /* smooth animation */
+
+  
+  }
+.avatar:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+  
+}
+.avatar.selected{
+  border:10px solid var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.5);
+}
+
+
+  .avatar img,.player-avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* border-radius: 10px ; */
+
+  }
+
+  #muteBtn{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width:130px;
+    padding: 12px 20px 12px;
+
+ }
+  /* .container{
+   width: 100%;
+    max-width:980px;
+    background:transparent;
+    display:grid;
+    gap:20px;   
+  
+  }  */
+
+/*START SCREEN*/
+#start-screen{
+ background: #370659;
+background: linear-gradient(302deg, rgba(55, 6, 89, 1) 1%, rgba(120, 64, 168, 1) 13%, rgba(105, 34, 122, 1) 40%, rgba(120, 14, 111, 1) 61%, rgba(204, 51, 181, 1) 100%);
+ padding: 32px;
+ box-shadow: 0 10px 30px rgba(20, 30, 60, 0.08);
+ display: flex;
+ flex-direction: column;
+ gap: 18px;
+ border-radius: 18px;
+ align-items: center;
+
+
+}
+.controls{
+width: 100%;
+display: flex;
+gap: 12px;
+align-items: center;
+justify-content: center;
+
+
+}
+.name-input{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.name-input input{
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 260px;
+}
+#game-screen{
+  display: none;/*Show after play*/
+  background:  #370659;
+background: linear-gradient(302deg, rgba(55, 6, 89, 1) 1%, rgba(120, 64, 168, 1) 13%, rgba(105, 34, 122, 1) 40%, rgba(120, 14, 111, 1) 61%, rgba(204, 51, 181, 1) 100%);
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(20, 30, 60, 0.6);
+}
+.topbar{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+.player-info{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.player-avatar{
+   width: 74px;height: 74px;
+   border-radius: 10px ;
+  
+  display: flex; align-items: center;justify-content: center;
+  overflow: hidden;
+  font-size: 30px;
+  border: 3px solid white;
+}
+
+.choices{
+justify-content: center;
+display:flex ;
+gap: 4px;
+
+
+}
+  /* Scoreboard Styling*/
+  #score-board{
+    margin: 20px auto;
+    padding: 15px;
+    width: fit-content;
+    text-align: center;
+    background:#222;
+    color:#fff;
+    border-radius: 12px;
+    box-shadow:  0px 4px 8px rgba(0,0,0,0.3);
+  }
+
+  #score-board h2{
+ margin-bottom: 10px;
+ font-size: 20px;
+ text-transform: uppercase;
+ color: #ffcc00;
+
+  }
+ 
+ .scores{
+  display: flex;
+  gap: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  justify-content: center;
+ }
+
+ .scores span{
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: #333;
+ }
+
+ #user-score{ background-color: #28a745;}/*green for wins*/
+ #computer-score{ background: #dc3545;}/*red for losses*/
+ #tie-score {background: #6c757d;}/*gray for ties*/
+
+#result{
+  min-height: 40px;
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #f7e2f9;
+  /* NEW STYLES */
+  text-align: center; /* centers text horizontally */
+  white-space: pre-line;/* respect \n newlines in innertext */
+}
+#attempts-left{
+  margin-top: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: large;
+}
+/*Fullscreen overlay after game ends */
+#end-screen{
+  display: flex;/*✅Shown by default*/
+  background-color: #28a745;
+  position:fixed ;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 50px; /*changed🧧*/
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  text-align: center;
+  flex-direction: column;
+  padding: 20px;
+
+  opacity:0;
+  transform: scale(1.2); 
+  filter: blur(10px);
+  pointer-events: none;
+
+   /* Animation */
+  transition: opacity 0.8s ease, transform 0.8s ease,filter 0.8s ease;
+  
+}
+#end-screen.show{
+
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  filter: blur(0px);
+  pointer-events: auto;
+
+}
+#end-message{
+  margin-bottom:20px;
+}
+#play-again{
+  font-weight: bold;
+  padding:12px 24px ;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background:#ff9800;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#play-again:hover{
+  background: #e68900;
+  transform: scale(1.1);
+ 
+}

@@ -1,0 +1,123 @@
+<!--USE THE ARRAY FOR THE BAT,BALL,STUMP GAME-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>MODIFY GAME</title>
+  <!--🎮 Game controller favicon-->
+  <link rel="icon" href="image/joystick.png">
+
+  <link rel="stylesheet" href="style.css">
+</style>
+
+ </head>
+ <body>
+<div id="container">
+
+<!--START SCREEN-->
+<section id="start-screen">
+<div class="title">Bat, Ball & STUMP
+  <img src="image/joy-stick.png" alt="Game Logo" class="logo">
+</div>
+<div class="subtitle">Choose name, pick a character and press play</div>
+
+<div class="controls">
+  <div class="name-input">
+    <label  for="username"
+    style="font-weight: 700;font-size: 20px;margin-right: 6px;">Name</label>
+    <input id="username" placeholder="Enter your name (e.g. Girish)" maxlength="20">
+  </div>
+  <div style="display: flex; gap:8px;align-items: center;">
+    <button id="playBtn" class="btn">Play</button>
+
+    <!-- mute/unmute -->
+     <button id="muteBtn" class="mutebtn" title="Mute / Unmute">
+      <span id="muteIcon">🔊</span>
+      <span id="muteText">Unmuted</span>
+     </button>
+  </div>
+</div>
+
+<div style="width: 100%;text-align: center;margin-top:6px;color: var(--muted);font-weight: 600;">Pick your character</div>
+
+<div class="avatar-grid" id="avatarGrid">
+  <!-- 6 Avatar-->
+   
+   <div class="avatar" data-id="char1"><img src="image/bugs.png" alt="Bugs-Bunny"></div>
+   <div class="avatar" data-id="char2"><img src="image/daffy.png" alt="Daffy-Duck"></div>
+   <div class="avatar" data-id="char3"><img src="image/taz.PNG" alt=""></div>
+   <div class="avatar" data-id="
+   char4"><img src="image/sweety.PNG" alt="Sweety"></div>
+   <div class="avatar"data-id="char5"><img src="image/cat.PNG" alt="Cat"></div>
+   <div class="avatar" data-id="char6"><img src="image/hunter.PNG" alt="Hunter"></div>
+
+</div>
+<div style="color: var(--muted);font-size: 15px;text-align: center;margin-top: 8px;">Glad you visited! 😎 Solo dev here,learning & building cool stuff 🚀</div>
+</section>
+
+<!-- GAME SCREEN (hidden initially)-->
+ <section id="game-screen">
+  <div class="topbar">
+    <div class="player-info">
+      <div class="player-avatar" id="playerAvatar">😁</div>
+      <div>
+         <div id="playerName" style="font-weight: 800;"></div>
+         <div style="font-size: 12px;color:var(--muted)">Good luck!</div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; align-items: center;">
+    <button onclick="resetToMenu()" class="mutebtn" title="Back to Menu">🏠 Menu</button>
+    <button onclick="resetGame()" class="mutebtn" title="Reset score">🔁 Reset</button>
+  </div>
+</div>
+
+
+
+  <h1 style="font-weight:bold;color: white;">Bat Ball Stump Game <img src="image/joy-stick.png" alt="Game Logo" class="logo"></h1>
+ 
+  <div class="choices" > 
+    <button class="choice-btn"onclick="playGame(`Bat`);">Bat</button>
+    <button class="choice-btn"onclick="playGame(`Ball`)">Ball</button>
+    <button class="choice-btn"onclick="playGame(`Stump`)">Stump</button>
+ </div>
+ <!--<button onclick="resetGame()">Reset</button>--> 
+  <!--Scoreboard-->
+ <div id="score-board">
+   <h2>Score</h2>
+   <div class="scores">
+     <span id="user-score">You: 0</span>
+     <span id="computer-score">Computer: 0</span>
+     <span id="tie-score">Tie: 0</span>
+
+   </div>
+    <div id="attempts-left">Attempts Left: 5</div>
+ </div>   
+
+  <!--Results-->
+<div id="result"></div>
+
+    <!-- <p id="result" style="font-size: 20px; font-weight: bold;"></p>
+   <p id="score"></p> -->
+
+   <!-- End Screen overlay -->
+  <div id="end-screen">
+   <div id="end-message"></div>
+   <button id="play-again">Play Again</button>
+</section>
+</div>
+  
+<!--Audio Elements-->
+ <audio id="winSound" src="sounds/win.mp3"></audio>
+ <audio      
+ id="lossSound"
+ src="sounds/loss.mp3"></audio>
+ <audio 
+ id="tieSound"
+ src="sounds/tie.mp3"></audio>
+ <audio id="bgSound"  src="sounds/bg.mp3"></audio>
+  
+<script src="scripts.js"></script>
+</body>
+</html>
