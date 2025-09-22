@@ -1,5 +1,4 @@
-
-    /*======== App state & helpers ========*/
+ /*======== App state & helpers ========*/
     let selectAvatar=null;
     const gameScreen=document.getElementById('game-screen');
     const startScreen=document.getElementById('start-screen');
@@ -12,9 +11,114 @@
      const lossSound=document.getElementById('lossSound');
      const tieSound=document.getElementById('tieSound');
     const usernameEl = document.getElementById('username');
+    const warning=document.getElementById("warning");
     const avatarGrid=document.getElementById('avatarGrid');
     const playerNameE1=document.getElementById('playerName');
     const playerAvatarEl = document.getElementById('playerAvatar');
+    //Feedback
+   const feedbackBtn=document.getElementById('feedbackBtn');
+   const feedbackModal=document.getElementById("feedbackModal");
+    const  closeBtn= document.getElementById("closeFeedback");
+   const feedbackForm=document.getElementById('feedbackForm');
+   const feedbackMsg =document.getElementById('feedbackMsg');
+   const stars =document.querySelectorAll('.star');
+   const ratingInput=document.getElementById('rating');
+   let selectRating=0;
+
+   //show modal
+   feedbackBtn.addEventListener('click',()=>{
+    feedbackModal.style.display='flex';
+   });
+ closeBtn.addEventListener('click',()=>{
+  feedbackModal.style.display='none';
+  feedbackMsg.innerText='';
+ });
+
+ //Star rating logic
+ stars.forEach(star=>{
+  star.addEventListener('mouseover',()=>{
+     const val= parseInt(star.getAttribute('data-value'));
+     highlightStars(val);
+  });
+  star.addEventListener('mouseout',()=>{
+    highlightStars(selectRating);
+  });
+  star.addEventListener('click',()=>{
+    selectRating=parseInt(star.getAttribute('data-value'));
+    ratingInput.value=selectRating;
+    highlightStars(selectRating);
+  })
+ 
+ });
+ function highlightStars(count){
+stars.forEach(star=>{
+  const val=parseInt(star.getAttribute('data-value'));
+  star.style.color= val<=count? 'gold':'white';
+});
+ }
+ //✨✨✨✨✨toast✨✨✨✨✨
+ function showToast(message, type = "success") {
+    const toastContainer = document.getElementById("toast");
+
+  // Remove existing toast before showing a new one
+  toastContainer.innerHTML = "";
+  const toast = document.createElement("div");
+  toast.classList.add("toast-message");
+
+  if (type === "success") toast.classList.add("toast-success");
+  if (type === "error")   toast.classList.add("toast-error");
+  if (type === "warning") toast.classList.add("toast-warning");
+
+  toast.innerText = message;
+
+  document.getElementById("toast").appendChild(toast);
+
+  // remove after animation
+  setTimeout(() => {
+    toast.remove();
+  }, 3500);
+}
+
+//submit form
+feedbackForm.addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  if(!ratingInput.value || selectRating===0){
+ showToast("⚠️ Please select a rating!", "warning");
+  return;
+  }
+
+  const formData= new FormData(feedbackForm);
+  try{
+    const response=await fetch('https://formspree.io/f/xjkenjeb',{
+      method:'POST',
+      body: formData,
+      headers: {'Accept': 'application/json'}
+    });
+    console.log("Status:",response.status);
+    console.log("Response:",await response.text());
+    if(response.ok){
+      feedbackForm.reset();
+      selectRating=0;
+      highlightStars(0);
+       showToast("✅ Thanks for your feedback! 🎉", "success");
+      setTimeout(()=>feedbackModal.style.display='none',1500);
+
+    }else{
+      showToast("❌ Something went wrong!", "error");
+    }}catch(err){
+      showToast("⚠️ Network error.Try again.","warning");
+    }
+  
+ 
+ });
+    //warning after Max:10 letter in input
+    usernameEl.addEventListener("input",()=>{
+      if(usernameEl.value.length >=usernameEl.maxLength){
+        warning.style.display="block";
+      }else{
+        warning.style.display="none";
+      }
+    });
     // mute/unmute toggle
     let isMuted =false;
     function updateMuteUI(){ 
@@ -74,7 +178,7 @@
     let score =JSON.parse(localStorage.getItem("score"))||{
       user:0,
       computer:0,
-      tie:0
+      tie:0 
     }
     function generateComputerChoice (){
   
@@ -156,7 +260,7 @@
     if(score.user > score.computer){
       endScreen.style.backgroundColor = "#02610b";
      endScreen.style.backgroundImage = "linear-gradient(10deg,rgba(2, 97, 11, 1) 17%, rgba(3, 105, 13, 1) 25%, rgba(9, 143, 22, 1) 40%, rgba(20, 176, 5, 1) 56%, rgba(51, 255, 0, 1) 74%, rgba(41, 191, 4, 1) 100%)";
-      endMessage.innerHTML=`<div>🎉Congrats, You Win! 🎉</div><div style="margin-top:8px;">Well played <strong>${playerNameE1.textContent}</strong></div>`;
+      endMessage.innerHTML=`<div>🎉Congrats, You Win!🎉</div><div style="margin-top:8px;">Well played <strong>${playerNameE1.textContent}</strong></div>`;
       winSound.play();
     }else if(score.computer> score.user){
       //endScreen.style.background="rgb(223 7 7)";
@@ -185,13 +289,15 @@
 
  //✅ Play Again button listener
  document.getElementById("play-again").addEventListener("click",()=>{resetGame(); // same as reset
-
- });
+ 
+ }); 
 
  //🔻 used for checking quick css changes in end-screen 👇⏬
-
-/*window.onload=()=>{
-  score={user:0,computer:0,tie:10};//testing for css
+  
+/*
+window.onload=()=>{
+  score={user:0,computer:10,tie:10};//testing for css
+  
   endGame();
  };*/
 
@@ -204,3 +310,4 @@ document.getElementById("winSound").onerror=()=>{
   document.getElementById("tieSound").onerror=()=>{
   console.error("❌ tie sound file not found!");
 };
+ 

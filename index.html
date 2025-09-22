@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="style.css">
 </style>
 
+
  </head>
  <body>
 <div id="container">
@@ -25,8 +26,16 @@
 <div class="controls">
   <div class="name-input">
     <label  for="username"
-    style="font-weight: 700;font-size: 20px;margin-right: 6px;">Name</label>
-    <input id="username" placeholder="Enter your name (e.g. Girish)" maxlength="20">
+    style="font-weight: 700;font-size: 20px;margin-right: 6px;color: #fafafa;">Name</label>
+    <input id="username" placeholder="Enter your name (e.g. Girish)" maxlength="10">
+    <p id="warning" style=" color: #ff4d4d; 
+      font-size: 14px; 
+      font-weight: bold; 
+      margin-top: 6px; 
+      display: none;
+      background: #ffe6e6;
+      padding: 6px 10px;
+      border-radius: 6px">⚠ Max 10 character only!</p>
   </div>
   <div style="display: flex; gap:8px;align-items: center;">
     <button id="playBtn" class="btn">Play</button>
@@ -53,7 +62,10 @@
    <div class="avatar" data-id="char6"><img src="image/hunter.PNG" alt="Hunter"></div>
 
 </div>
-<div style="color: var(--muted);font-size: 15px;text-align: center;margin-top: 8px;">Glad you visited! 😎 Solo dev here,learning & building cool stuff 🚀</div>
+<div   style="color: var(--muted);font-size: 15px;
+line-height: 1.4;
+text-align: center;margin-top: 8px;">Glad you visited! 😎 Solo dev here,learning & building cool stuff 🚀</div>
+
 </section>
 
 <!-- GAME SCREEN (hidden initially)-->
@@ -62,14 +74,14 @@
     <div class="player-info">
       <div class="player-avatar" id="playerAvatar">😁</div>
       <div>
-         <div id="playerName" style="font-weight: 800;"></div>
+         <div id="playerName" style="font-weight: 800;color: #f7dbfa;overflow-wrap: break-word;max-width: 80px;text-align: center;">1234567890</div>
          <div style="font-size: 12px;color:var(--muted)">Good luck!</div>
       </div>
     </div>
 
-    <div style="display: flex; gap: 10px; align-items: center;">
-    <button onclick="resetToMenu()" class="mutebtn" title="Back to Menu">🏠 Menu</button>
-    <button onclick="resetGame()" class="mutebtn" title="Reset score">🔁 Reset</button>
+    <div style="display: flex; gap: 3px; align-items: center;">
+    <button onclick="resetToMenu()" class="resetbtn" title="Back to Menu">🏠 Menu</button>
+    <button onclick="resetGame()" class="resetbtn" title="Reset score">🔁 Reset</button>
   </div>
 </div>
 
@@ -105,6 +117,38 @@
   <div id="end-screen">
    <div id="end-message"></div>
    <button id="play-again">Play Again</button>
+   <button id="feedbackBtn">
+    💬 Give Feedback
+   </button>
+   <!--Feedback form-->
+   <div id="feedbackModal">
+   <div id="feedback">
+    <div id="closeFeedback" style="position:absolute;top:15px;right:15px;cursor:pointer;font-size:22px;"> <svg xmlns="http://www.w3.org/2000/svg" 
+       viewBox="0 0 24 24" 
+       width="30" height="30" 
+       stroke="white" stroke-width="2" fill="none">
+    <path d="M6 6l12 12M6 18L18 6" stroke-linecap="round"/>
+  </svg></div>
+    <h2 style="margin-bottom: 15px;">We ❤️ Your Feedback! </h2>
+    <form id="feedbackForm" style="display: flex;flex-direction: column;gap: 10px;">
+    <input type="text" name="name"placeholder="Your Name" maxlength="20" required style="padding:10px;border-radius: 8px;border: none;font-size: 14px;outline: none;">
+    <input type="email" name="email"placeholder="Your Email" required style="padding: 10px;border-radius: 8px;border: none;font-size: 14px;outline: none;">
+    <label for="stars"style="text-align:left;margin-top:5px">Rate the game: </label>
+    <div class="stars" style="display: flex;justify-content: center;gap:5px;margin-bottom: 5px;">
+      <span class="star" data-value="1"style="font-size:50px; color: white;cursor:pointer;">&#9733;</span>
+     <span class="star" data-value="2"style="font-size:50px;  color: white;cursor:pointer;">&#9733;</span>
+     <span class="star" data-value="3"style="font-size:50px;  color: white;cursor:pointer;">&#9733;</span>
+    <span class="star" data-value="4"style="font-size:50px;  color: white;cursor:pointer;">&#9733;</span>
+     <span class="star" data-value="5"style="font-size:50px;  color: white;cursor:pointer;">&#9733;</span>
+    </div>
+ <input type="hidden"name="rating"id="rating"required>
+ 
+ <textarea name="message" placeholder="Describe your experience....."maxlength="200" required style="padding: 10px;border-radius: 8px;border: none;font-size: 14px;resize: none;height: 80px;outline: none;"></textarea>
+ <button type="submit" style="padding: 12px;border-radius: 10px;border: none;background:#ff9800;color:white;font-weight: bold;cursor: pointer;transition: 0.3s;">Send 🚀</button>
+    </form>
+    <!-- <div id="feedbackMsg" style="margin-top: 10px;font-size: 14px;color:#00ff99;padding: 20px 20px ;background: white; border-radius: 10px;"></div> -->
+   </div>
+</div>
 </section>
 </div>
   
@@ -119,5 +163,8 @@
  <audio id="bgSound"  src="sounds/bg.mp3"></audio>
   
 <script src="scripts.js"></script>
+<footer>
+    Made with 😁 &<span style="color: red;"> ❤</span> by Girish 🚀
+  </footer>
+  <div id="toast"></div>
 </body>
-</html>
