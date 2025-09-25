@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>MODIFY GAME</title>
   <!--🎮 Game controller favicon-->
-  <link rel="icon" href="image/joystick.png">
+  <!--Webp favicon-->
+  <link rel="icon" type="image/webp" href="image/joystick.webp">
+   <!--png fallback favicon-->
+  <link rel="icon" type="image/png" href="image/joystick.png">
 
   <link rel="stylesheet" href="style.css">
-</style>
+
 
 
  </head>
@@ -19,7 +22,10 @@
 <!--START SCREEN-->
 <section id="start-screen">
 <div class="title">Bat, Ball & STUMP
+  <picture>
+  <source srcset="image/joy-stick.webp" type="image/webp" >
   <img src="image/joy-stick.png" alt="Game Logo" class="logo">
+</picture>
 </div>
 <div class="subtitle">Choose name, pick a character and press play</div>
 
@@ -53,13 +59,36 @@
 <div class="avatar-grid" id="avatarGrid">
   <!-- 6 Avatar-->
    
-   <div class="avatar" data-id="char1"><img src="image/bugs.png" alt="Bugs-Bunny"></div>
-   <div class="avatar" data-id="char2"><img src="image/daffy.png" alt="Daffy-Duck"></div>
-   <div class="avatar" data-id="char3"><img src="image/taz.PNG" alt=""></div>
-   <div class="avatar" data-id="
-   char4"><img src="image/sweety.PNG" alt="Sweety"></div>
-   <div class="avatar"data-id="char5"><img src="image/cat.PNG" alt="Cat"></div>
-   <div class="avatar" data-id="char6"><img src="image/hunter.PNG" alt="Hunter"></div>
+   <div class="avatar" data-id="char1">
+    <picture>
+    <source srcset="image/bugs.webp" type="image/webp">
+    <img src="image/bugs.png" alt="Bugs-Bunny">
+  </picture></div>
+   <div class="avatar" data-id="char2">
+    <picture>
+      <source srcset="image/daffy.webp" type="image/webp">
+    <img src="image/daffy.png" alt="Daffy-Duck">
+  </picture></div>
+   <div class="avatar" data-id="char3">
+     <picture>
+      <source srcset="image/taz.webp" type="image/webp">
+      <img src="image/taz.png" alt="Taz">
+    </picture></div>
+   <div class="avatar" data-id=" char4">
+    <picture>
+    <source srcset="image/sweety.webp" type="image/webp">
+    <img src="image/sweety.png" alt="Sweety">
+  </picture></div>
+   <div class="avatar"data-id="char5">
+    <picture>
+      <source srcset="image/cat.webp" type="image/webp">
+    <img src="image/cat.png" alt="Cat">
+  </picture></div>
+   <div class="avatar" data-id="char6">
+    <picture>
+      <source srcset="image/hunter.webp" type="image/webp">
+    <img src="image/hunter.png" alt="Hunter">
+  </picture></div>
 
 </div>
 <div   style="color: var(--muted);font-size: 15px;
@@ -87,7 +116,11 @@ text-align: center;margin-top: 8px;">Glad you visited! 😎 Solo dev here,learni
 
 
 
-  <h1 style="font-weight:bold;color: white;">Bat Ball Stump Game <img src="image/joy-stick.png" alt="Game Logo" class="logo"></h1>
+  <h1 style="font-weight:bold;color: white;">Bat Ball Stump Game 
+    <picture>
+      <source srcset="image/joy-stick.webp" type="image/webp">
+    <img src="image/joy-stick.png" alt="Game Logo" class="logo">
+  </picture></h1>
  
   <div class="choices" > 
     <button class="choice-btn"onclick="playGame(`Bat`);">Bat</button>
